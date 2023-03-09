@@ -9,5 +9,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Sudoku.Backtracking\Sudoku.Backtracking.csproj" />
     <ProjectReference Include="..\Sudoku.Shared\Sudoku.Shared.csproj" />
+    <ProjectReference Include="..\Sudoku.Solver_HA_JG_AF\Sudoku.Solver_HA_JG_AF.csproj" />
   </ItemGroup>
 </Project>
