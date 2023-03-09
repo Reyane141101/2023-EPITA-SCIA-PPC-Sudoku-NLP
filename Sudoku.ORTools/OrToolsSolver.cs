@@ -1,5 +1,10 @@
-﻿using Google.OrTools.Sat;
+using Google.OrTools.Sat;
 using Sudoku.Shared;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System;
 
 namespace Sudoku.OrTools
 {
