@@ -1,6 +1,6 @@
 ﻿using Sudoku.Shared;
 
-namespace Sudoku.Z2Solver
+namespace Sudoku.Z3Solver
 {
 	public class Z3Solver: ISudokuSolver
 	{
