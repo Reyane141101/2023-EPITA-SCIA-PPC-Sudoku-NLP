@@ -3,32 +3,35 @@ using Sudoku.Shared;
 
 namespace Sudoku.OrTools
 {
-	public class OrToolsSolver : ISudokuSolver
-	{
-		public SudokuGrid Solve(SudokuGrid s)
-		{
-			return s;
-		}
+    public class OrToolsSolver : ISudokuSolver
+    {
+        private const int Size = 9;
 
-		/**
+        public SudokuGrid Solve(SudokuGrid s)
+        {
+            return s;
+        }
+
+        /**
 		 * Initialize a model with n*n from a sudoku grid
 		 */
-		private CpModel InitModel(SudokuGrid s)
-		{
-			var model = new CpModel();
-			
-			const int size = 9;
-			var cellVars = new IntVar[size, size];
-			for (var i = 0; i < size; i++)
-			{
-				for (var j = 0; j < size; j++)
-				{
-					// TODO: Initialize the known values
-					cellVars[i, j] = model.NewIntVar(1, size, $"x{i}{j}");
-				}
-			}
-			
-			return model;
-		}
-	}
+        private CpModel InitModel(SudokuGrid grid)
+        {
+            var model = new CpModel();
+
+            var cellVars = new IntVar[Size, Size];
+            for (var i = 0; i < Size; i++)
+            {
+                for (var j = 0; j < Size; j++)
+                {
+                    if (grid.Cells[i][j] != 0)
+                        cellVars[i, j] = model.NewConstant(grid.Cells[i][j]);
+                    else
+                        cellVars[i, j] = model.NewIntVar(1, Size, $"x{i}{j}");
+                }
+            }
+
+            return model;
+        }
+    }
 }
