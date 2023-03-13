@@ -30,6 +30,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Z3Solver", "Sudoku.Z
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku_BERNARD_RECOUVREUX_TRAORE", "Sudoku_BERNARD_RECOUVREUX_TRAORE\Sudoku_BERNARD_RECOUVREUX_TRAORE.csproj", "{37805311-0C9C-4387-888E-FCEB03E1D6A3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku_Solver_OR-TOOLS", "Sudoku_Solver_OR-TOOLS\Sudoku_Solver_OR-TOOLS.csproj", "{DA7451CB-8F56-4E98-A076-00DB35BD910A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -80,6 +82,10 @@ Global
 		{37805311-0C9C-4387-888E-FCEB03E1D6A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37805311-0C9C-4387-888E-FCEB03E1D6A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37805311-0C9C-4387-888E-FCEB03E1D6A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA7451CB-8F56-4E98-A076-00DB35BD910A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA7451CB-8F56-4E98-A076-00DB35BD910A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA7451CB-8F56-4E98-A076-00DB35BD910A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA7451CB-8F56-4E98-A076-00DB35BD910A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
