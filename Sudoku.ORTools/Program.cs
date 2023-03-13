@@ -109,7 +109,7 @@ public class Program
         Console.WriteLine(grid);
         Console.WriteLine("Solving");
 
-        new SimpleSolver().Solve(grid);
+        new OrToolsCpSolver().Solve(grid);
         // TODO : Verify
 
         Console.WriteLine("Solved:\n");

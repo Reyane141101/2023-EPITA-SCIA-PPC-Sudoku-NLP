@@ -8,7 +8,7 @@ using System;
 
 namespace Sudoku.OrTools
 {
-    public class SimpleSolver : ISudokuSolver
+    public class OrToolsCpSolver : ISudokuSolver
     {
         private CpModel model;
 

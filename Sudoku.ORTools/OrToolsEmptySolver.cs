@@ -8,7 +8,7 @@ using System;
 
 namespace Sudoku.OrTools
 {
-    public class OrToolsSolver : ISudokuSolver
+    public class OrToolsEmptySolver : ISudokuSolver
     {
         private const int Size = 9;
 
