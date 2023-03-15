@@ -27,7 +27,7 @@ public class Program
 
         var SAT_solvedGrid = new SolverOrTools().Solve(grid);//SAT solver grid;
         var ORIGINAL_solvedGrid = new Sudoku_Solver_OR_TOOLS_origin().Solve(grid);//SAT solver grid;
-        
-        Console.Write(ORIGINAL_solvedGrid.ToString());
+        var MIP_solvedGrid = new Sudoku_Solver_OR_TOOLS_MIP().Solve(grid);//MIP solver grid;
+        Console.Write(MIP_solvedGrid.ToString());
     }
 }
