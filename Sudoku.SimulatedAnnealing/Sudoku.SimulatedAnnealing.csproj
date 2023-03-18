@@ -10,4 +10,8 @@
       <ProjectReference Include="..\Sudoku.Shared\Sudoku.Shared.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="SimnOpt.Heuristics" Version="1.0.4" />
+    </ItemGroup>
+
 </Project>
