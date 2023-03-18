@@ -32,11 +32,11 @@ namespace Sudoku.SimulatedAnnealing
         {
             // display the initial state
             Console.WriteLine(s.ToString());
-            // set the initial temperature
-            double t = .5;  // TODO: compute the initial temperature using standard deviation of the initial state
             // set the original state
             SudokuGrid original = s.CloneSudoku();
             s = FillEmptyValues(s);
+            // set the initial temperature
+            double t = GetInitialTemperature(s, original);
             // set the initial best state
             SudokuGrid best = s.CloneSudoku();
             // set the initial current score
@@ -46,11 +46,10 @@ namespace Sudoku.SimulatedAnnealing
             
             // loop until the system has cooled
             int it = 0;
-            while (it < 400000)  // TODO: compute the number of iterations using the initial temperature
+            while (it < 500000)
             {
                 // create a new neighbour state
                 SudokuGrid neighbour = CreateNewState(s, original);
-
                 // get the neighbour score
                 double neighbourScore = neighbour.NbErrors(original);
                 // get the delta score
@@ -76,6 +75,38 @@ namespace Sudoku.SimulatedAnnealing
                 it++;
             }
             return best;
+        }
+
+        public double GetInitialTemperature(SudokuGrid s, SudokuGrid original)
+        {
+            List<double> listOfDifferences = new List<double>();
+            SudokuGrid tmpSudoku = s.CloneSudoku();
+            for (int i = 0; i < 10; i++)
+            {
+                tmpSudoku = CreateNewState(tmpSudoku, original);
+                double nbErrors = tmpSudoku.NbErrors(original);
+                listOfDifferences.Add(nbErrors);
+            }
+            return CalculateStandardDeviation(listOfDifferences);
+        }
+        
+        private double CalculateStandardDeviation(List<double> values)
+        {   
+            double standardDeviation = 0;
+
+            if (values.Any()) 
+            {      
+                // Compute the average.     
+                double avg = values.Average();
+
+                // Perform the Sum of (value-avg)_2_2.      
+                double sum = values.Sum(d => Math.Pow(d - avg, 2));
+
+                // Put it all together.      
+                standardDeviation = Math.Sqrt((sum) / (values.Count()-1));   
+            }  
+
+            return standardDeviation;
         }
 
         public SudokuGrid FillEmptyValues(SudokuGrid current)
