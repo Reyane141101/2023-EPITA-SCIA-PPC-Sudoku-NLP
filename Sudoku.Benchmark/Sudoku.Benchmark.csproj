@@ -8,7 +8,13 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sudoku.Backtracking\Sudoku.Backtracking.csproj" />
+    <ProjectReference Include="..\Sudoku.ORTools\Sudoku.ORTools.csproj" />
+    <ProjectReference Include="..\Sudoku.DemoSolver\Sudoku.DemoSolver.csproj" />
     <ProjectReference Include="..\Sudoku.Shared\Sudoku.Shared.csproj" />
+    <ProjectReference Include="..\Sudoku_BERNARD_RECOUVREUX_TRAORE\Sudoku_BERNARD_RECOUVREUX_TRAORE.csproj" />
+    <ProjectReference Include="..\Sudoku.Z3Solver\Sudoku.Z3Solver.csproj" />
     <ProjectReference Include="..\Sudoku.SimulatedAnnealing\Sudoku.SimulatedAnnealing.csproj" />
+    <ProjectReference Include="..\Sudoku.ChocoSolver\Sudoku.ChocoSolver.csproj" />
+    <ProjectReference Include="..\Sudoku.Solver_HA_JG_AF\Sudoku.Solver_HA_JG_AF.csproj" />
   </ItemGroup>
 </Project>
