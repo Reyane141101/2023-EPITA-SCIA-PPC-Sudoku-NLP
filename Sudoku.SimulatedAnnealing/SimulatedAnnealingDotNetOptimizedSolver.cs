@@ -1,4 +1,7 @@
+using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using SimnOpt.Heuristics.SimAn;
 using Sudoku.Shared;
 
@@ -29,11 +32,26 @@ public class SimulatedAnnealingDotNetOptimizedSolver: ISudokuSolver
         return startSolution;
     }
 
+    public double getStartTemp()
+    {
+        // generate 200 start solutions and compute the standard deviation of the cost
+        List<double> costs = new List<double>();
+        for (int i = 0; i < 200; i++)
+        {
+            SASudokuGrid startSolution = GenerateStartSolution();
+            costs.Add(startSolution.Fitness);
+        }
+        
+        double avg = costs.Average();
+        double std = Math.Sqrt(costs.Average(v=>Math.Pow(v-avg,2)));
+        return std;
+    }
+
     public SudokuGrid Solve(SudokuGrid s)
     {
         SASudokuGrid.Original = s.CloneSudoku();
         
-        SimAnHeurParams saParams = new SimAnHeurParams(defaultStepSize: 1, defaultCoolDown: 0.9, startTemp: 20);
+        SimAnHeurParams saParams = new SimAnHeurParams(defaultStepSize: 100, defaultCoolDown: 0.99, startTemp: getStartTemp());
         saParams.GenerateNeighborSolution = GenerateNeighbour;
         saParams.MaxIter = (int)Math.Pow(10,6);
         //optimize
