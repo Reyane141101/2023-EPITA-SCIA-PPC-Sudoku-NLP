@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 import org.chocosolver.solver.Model;
+import org.chocosolver.solver.variables.IntVar;
 
 public class SudokuCP extends Object {
     public static void PrintCells(int[][] cells) {
@@ -15,16 +16,17 @@ public class SudokuCP extends Object {
 
     private Model model;
     private int[][] sudoku;
-    private int[][] validEntries = {1,2,3,4,5,6,7,8,9};
+    private int[] validEntries = {1,2,3,4,5,6,7,8,9};
+    private int side ;
+    private IntVar[][] vs;
 
     public SudokuCP(int[][] sudoku) {
         this.sudoku = sudoku;
         model = new Model();
 
         final var dimensionality = 3;
-        var side = dimensionality * dimensionality;
-
-        var vs = model.intVarMatrix(side, side, 1, validEntries.length);
+        side = dimensionality * dimensionality;
+        vs = model.intVarMatrix(side, side, 1, validEntries.length);
 
         for (int i = 0; i < side; i++) {
             for (int j = 0; j < side; j++) {
@@ -70,7 +72,7 @@ public class SudokuCP extends Object {
         for (int i = 0; i < side; i++) {
             var row = new ArrayList<Integer>();
             for (int j = 0; j < side; j++) {
-                row.add(vs[i][j] - 1);
+                row.add(vs[i][j].getValue() - 1);
             }
             sol.add(row);
         }
