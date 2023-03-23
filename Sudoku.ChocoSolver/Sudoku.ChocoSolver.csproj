@@ -3,7 +3,15 @@
     <ProjectReference Include="..\Sudoku.Shared\Sudoku.Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="IKVM" Version="8.3.3" />
+    <PackageReference Include="IKVM" Version="8.4.5" />
+  </ItemGroup>
+  <ItemGroup>
+    <IkvmReference Include="ChocoSolverJava\out\artifacts\ChocoSolverJava_jar\ChocoSolverJava.jar">
+      <AssemblyName>ChocoSolver</AssemblyName>
+      <AssemblyVersion>3.2.1.0</AssemblyVersion>
+      <AssemblyFileVersion>3.0.0.0</AssemblyFileVersion>
+    </IkvmReference> 
+    
   </ItemGroup>
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
