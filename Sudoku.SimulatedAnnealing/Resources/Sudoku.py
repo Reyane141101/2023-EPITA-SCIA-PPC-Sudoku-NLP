@@ -216,9 +216,6 @@ def solve():
     print("\n")
     print_sudoku(state)
     print("E=%f (expect -162)" % e)
-    res = state.reshape(9,9)
+    res = state.flatten().tolist()
     return res
-
-if __name__ == "__main__":
-    r = instance
-    r = solve()
+    
