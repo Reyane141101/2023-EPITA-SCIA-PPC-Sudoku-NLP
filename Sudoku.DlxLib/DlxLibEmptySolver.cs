@@ -6,7 +6,7 @@ public class DlxLibEmptySolver : ISudokuSolver
 {
     public SudokuGrid Solve(SudokuGrid s)
     {
-        Console.WriteLine(@"===== DlixLib Solver =====");
+        Console.WriteLine(@"===== DlixLib Empty Solver =====");
         return s.CloneSudoku();
     }
 }
