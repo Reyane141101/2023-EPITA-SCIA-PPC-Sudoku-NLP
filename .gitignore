@@ -363,3 +363,15 @@ MigrationBackup/
 .history/
 .localhistory/
 
+# Maven
+target
+
+# Other
+*.log
+*.swp
+*.bak
+
+# Build
+out
+build
+bin
