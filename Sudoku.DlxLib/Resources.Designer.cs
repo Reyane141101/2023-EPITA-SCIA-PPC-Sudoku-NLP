@@ -44,5 +44,11 @@ namespace Sudoku.DlxLib {
                 resourceCulture = value;
             }
         }
+        
+        internal static string PythonSolver_py {
+            get {
+                return ResourceManager.GetString("PythonSolver.py", resourceCulture);
+            }
+        }
     }
 }
