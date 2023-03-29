@@ -361,3 +361,6 @@ MigrationBackup/
 .history/
 .localhistory/
 
+**/__pycache__/
+**/sudoku.csv
+**/sudoku.csv.zip
