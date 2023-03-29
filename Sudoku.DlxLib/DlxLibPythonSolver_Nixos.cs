@@ -35,7 +35,6 @@ public class DlxLibPythonSolver : ISudokuSolver
             // run the Python script
             string code = Resources.PythonSolver_py;
             scope.Exec(code);
-            Console.WriteLine(code);
 
             //Retrieve solved Sudoku variable
             var result = scope.Get("r");
