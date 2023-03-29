@@ -42,7 +42,6 @@ namespace ClassLibrary1
                 {
                     if (s.Cells[i][j] != 0)
                     {
-                        Console.Write(s.Cells[i][j]);
                         grid[i][j] = model.NewConstant(s.Cells[i][j]);
                     }
                     else
