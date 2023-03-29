@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 using Python.Deployment;
 using Python.Runtime;
 
-namespace Sudoku.DlxLib;
+namespace Sudoku.CNN;
 
-public class DlxLibPythonSolver : ISudokuSolver
+public class CnnPythonSolver : ISudokuSolver
 {
     public SudokuGrid Solve(SudokuGrid s)
     {
         Installer.SetupPython();
-        Runtime.PythonDLL = "/nix/store/5axq6aw8j3vcs2m7gi440cwpcckl7ql9-python3-3.10.9/lib/libpython3.10.so";
+        Runtime.PythonDLL = "/nix/store/jzi98h678vkjd1zi9c9yi7f4q91vzxkj-python3-3.10.9-env/lib/libpython3.so";
         PythonEngine.Initialize();
         
-        Console.WriteLine(@"===== DlxLix Python Solver =====");
+        Console.WriteLine(@"===== CNN Python Solver =====");
         
         //System.Diagnostics.Debugger.Break();
 
@@ -38,7 +38,6 @@ public class DlxLibPythonSolver : ISudokuSolver
 
             //Retrieve solved Sudoku variable
             var result = scope.Get("r");
-            Console.WriteLine(result);
 
             //Convert back to C# object
             var managedResult = result.As<int[][]>();

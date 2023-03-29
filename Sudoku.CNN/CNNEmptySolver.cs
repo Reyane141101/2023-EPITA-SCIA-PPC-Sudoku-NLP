@@ -1,8 +1,8 @@
 ﻿using Sudoku.Shared;
 
-namespace Sudoku.DlxLib;
+namespace Sudoku.CNN;
 
-public class DlxLibEmptySolver : ISudokuSolver
+public class CnnEmptySolver : ISudokuSolver
 {
     public SudokuGrid Solve(SudokuGrid s)
     {

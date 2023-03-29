@@ -3,9 +3,7 @@ import keras
 import numpy as np
 from os.path import abspath
 
-model = keras.models.load_model(abspath(
-    'Sudoku.DlxLib/Resources/model/sudoku.model'
-))
+model = keras.models.load_model(abspath('Sudoku.CNN/Resources/model/sudoku.model'))
 
 def flatten(array2D):
     result = []
@@ -59,7 +57,6 @@ def solve():
     grid = np.array([int(j) for j in grid]).reshape((9,9,1))
     grid = norm(grid)
     grid = inference_sudoku(grid)
-    #print(grid)
     return grid
 
 

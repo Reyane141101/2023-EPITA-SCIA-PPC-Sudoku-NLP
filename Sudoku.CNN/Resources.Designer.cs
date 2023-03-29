@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Sudoku.DlxLib {
+namespace Sudoku.CNN {
     using System;
     
     

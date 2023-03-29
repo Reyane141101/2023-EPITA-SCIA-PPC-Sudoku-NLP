@@ -4,7 +4,7 @@
         <TargetFramework>net7.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <RootNamespace>Sudoku.DlxLib</RootNamespace>
+        <RootNamespace>Sudoku.CNN</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
