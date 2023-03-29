@@ -57,7 +57,7 @@ def solve():
     grid = np.array([int(j) for j in grid]).reshape((9,9,1))
     grid = norm(grid)
     grid = inference_sudoku(grid)
-    return grid
+    return grid.tolist()
 
 
 r = solve()
