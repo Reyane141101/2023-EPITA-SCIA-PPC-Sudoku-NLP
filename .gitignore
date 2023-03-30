@@ -377,3 +377,6 @@ target
 out
 build
 bin
+**/__pycache__/
+**/sudoku.csv
+**/sudoku.csv.zip
