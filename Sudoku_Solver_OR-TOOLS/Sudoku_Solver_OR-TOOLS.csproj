@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <LangVersion>10</LangVersion>
+        <RootNamespace>ClassLibrary1</RootNamespace>
+        <TargetFramework>net7.0</TargetFramework>
+        <OutputType>Exe</OutputType>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Sudoku.Backtracking\Sudoku.Backtracking.csproj" />
+      <ProjectReference Include="..\Sudoku.Benchmark\Sudoku.Benchmark.csproj" />
+      <ProjectReference Include="..\Sudoku.DemoSolver\Sudoku.DemoSolver.csproj" />
+      <ProjectReference Include="..\Sudoku.Shared\Sudoku.Shared.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Google.OrTools" Version="9.6.2534" />
+    </ItemGroup>
+
+</Project>

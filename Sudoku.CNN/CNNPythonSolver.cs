@@ -30,4 +30,15 @@ public class CNNPythonSolver : PythonSolverBase
         }
         throw new NotImplementedException();
     }
+
+    protected override void InitializePythonComponents()
+    {
+	    //declare your pip packages here
+	    InstallPipModule("numpy");
+		InstallPipModule("tensorflow");
+		InstallPipModule("keras");
+
+		base.InitializePythonComponents();
+    }
+
 }
