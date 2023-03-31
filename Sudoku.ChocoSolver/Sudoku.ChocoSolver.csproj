@@ -7,7 +7,7 @@
     <PackageReference Include="IKVM.Image.JDK" Version="8.4.5" />
   </ItemGroup>
   <ItemGroup>
-    <IkvmReference Include=".\ChocoSolverJava\out\artifacts\ChocoSolverJava_jar\ChocoSolverJava.jar">
+    <IkvmReference Include=".\ChocoSolverJava\target\ChocoSolverJava-1.0-jar-with-dependencies.jar">
       <AssemblyName>Sudoku.JavaChocoSolver</AssemblyName>
       <AssemblyVersion>3.2.1.0</AssemblyVersion>
       <AssemblyFileVersion>3.0.0.0</AssemblyFileVersion>
