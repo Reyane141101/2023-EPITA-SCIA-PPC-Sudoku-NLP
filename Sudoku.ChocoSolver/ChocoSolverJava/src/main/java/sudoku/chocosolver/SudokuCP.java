@@ -8,6 +8,10 @@ import org.chocosolver.solver.variables.IntVar;
 
 
 public class SudokuCP extends Object {
+    public static void main(String[] args) {
+
+    }
+
     public static void PrintCells(int[][] cells) {
         String cellsString = "";
         for (int i = 0; i < cells.length; i++) {
