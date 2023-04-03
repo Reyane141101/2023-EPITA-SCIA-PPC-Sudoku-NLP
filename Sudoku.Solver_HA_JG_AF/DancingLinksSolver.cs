@@ -7,6 +7,10 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Sudoku.Solver_HA_JG_AF
 {
+
+    //OK pour votre premier solver qui a l'air de bien fonctionner.
+    //Tout en conservant celui-là, pouvez-vous jeter un coup d'oeil sur le code optimisé mentionné dans le sujet. A priori il est plus rapide.
+
     public class DancingLinksSolver : ISudokuSolver
     {
 
