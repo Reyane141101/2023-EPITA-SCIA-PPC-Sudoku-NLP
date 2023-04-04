@@ -30,10 +30,7 @@
   <ItemGroup>
     <PackageReference Include="Accord" Version="3.8.2-alpha" />
     <PackageReference Include="Accord.Math" Version="3.8.2-alpha" />
-    <PackageReference Include="GraphSharp" Version="1.1.0" />
-    <PackageReference Include="QuickGraph" Version="3.6.61119.7" />
-    <PackageReference Include="QuickGraphPCL" Version="3.6.61114.2" />
-    <PackageReference Include="QuikGraph.Graphviz" Version="2.5.0" />
+    <PackageReference Include="YC.QuickGraph" Version="3.7.3" />
   </ItemGroup>
 
 </Project>

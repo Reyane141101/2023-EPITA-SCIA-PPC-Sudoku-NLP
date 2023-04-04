@@ -5,9 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Sudoku.Shared;
 using QuickGraph;
-using GraphSharp;
-using GraphSharp.Algorithms.Layout.Contextual;
-
+using QuickGraph.Algorithms.GraphColoring.VertexColoring;
 
 namespace Graph_Coloration_Solver
 {
@@ -16,18 +14,17 @@ namespace Graph_Coloration_Solver
 
 		public SudokuGrid Solve(SudokuGrid s)
 		{
-			var adjacencyMatrix = BuildAdjencyMatrix();
-			var solver = new VertexColoringSolver();
-			var vertexColors = SudokuToVertexColor(s);
 			
-			//launch the solver
-			var colors = solver.Solve(adjacencyMatrix, s.Cells.Length, vertexColors);
+			UndirectedGraph<int, UndirectedEdge<int>> graph = BuildGraph();
+			var vertexColors = SudokuToVertexColor(s);
+			var solver = new DsatColoringSolver(graph, vertexColors);
 
-			if (colors != null)
-				foreach (KeyValuePair<int, int> color in colors)
-					s.Cells[color.Key / 9][color.Key % 9] = color.Value;
-			else
-				Console.WriteLine("No valid coloring exists.");
+			solver.Solve();
+			
+			foreach (KeyValuePair<int, int> color in solver.VertexColors)
+			{
+				s.Cells[color.Key % 9][color.Key / 9] = color.Value;
+			}
 			
 			return s;
 		}
@@ -45,26 +42,25 @@ namespace Graph_Coloration_Solver
 			return vertexColors;
 		}
 
-		private int[][] BuildAdjencyMatrix()
+		private UndirectedGraph<int, UndirectedEdge<int>> BuildGraph()
 		{
+			UndirectedGraph<int, UndirectedEdge<int>> graph = new UndirectedGraph<int, UndirectedEdge<int>>();
+			
+			graph.AddVertexRange(Enumerable.Range(0, 81).ToArray());
+
 			int[][] adjacencyMatrix = new int[81][];
 
 			for (int i = 0; i < 81; i++)
 			{
-				adjacencyMatrix[i] = new int[81];
 				for (int j = 0; j <= i; j++)
 				{
 					if (j / 9 == i / 9 || j % 9 == i % 9 || (j / 27 == i / 27 && j % 9 / 3 == i % 9 / 3))
 					{
-						adjacencyMatrix[i][j] = 1;
-						adjacencyMatrix[j][i] = 1;
+						graph.AddEdge(new UndirectedEdge<int>(i, j));
 					}
-					else
-						adjacencyMatrix[i][j] = 0;
 				}
 			}
-
-			return adjacencyMatrix;
+			return graph;
 		}
 		
 	}
