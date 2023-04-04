@@ -4,8 +4,12 @@ using System.Linq;
 
 namespace Graph_Coloration_Solver
 {
-    public class VertexColoringSolver
+    public class DsatColoringSolver
     {
+        private Dictionary<int, int> _nAdjacentUncolored = new Dictionary<int, int>();
+        private Dictionary<int, HashSet<int>> _AdjacentColor = new Dictionary<int, HashSet<int>>();
+        
+        public DsatColoringSolver
         public Dictionary<int, int> Solve(int[][] adjacencyMatrix, int numColors, Dictionary<int, int> vertexColors)
         {
             var availableColors = Enumerable.Range(1, numColors).ToList();
