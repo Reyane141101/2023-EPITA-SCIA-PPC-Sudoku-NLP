@@ -374,6 +374,5 @@ target
 *.bak
 
 # Build
-out
 build
 bin
