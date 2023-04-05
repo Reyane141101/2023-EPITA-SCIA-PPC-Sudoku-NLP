@@ -11,10 +11,12 @@ namespace Sudoku.Z3Solver
 {
     public abstract class Z3SolverBase : ISudokuSolver
     {
-		public static Context ctx = new Context(new Dictionary<string, string>() { { "model", "true" } });
+		public static Context ctx = new Context();
 		public BoolExpr _PuzzleContraints;
         public static BoolExpr _GenericContraints;
 		public static IntExpr[][] X = new IntExpr[9][];
+
+        public static Solver _ReusableSolver;
 
 		public Z3SolverBase()
 		{
@@ -38,6 +40,25 @@ namespace Sudoku.Z3Solver
 				return _GenericContraints;
 			}
 		}
+
+        public static Solver ReusableSolver
+        {
+            get
+            {
+                if (_ReusableSolver == null)
+                {
+                    _ReusableSolver = MakeReusableSolver();
+                }
+                return _ReusableSolver;
+            }
+        }
+
+        public static Solver MakeReusableSolver()
+        {
+            Solver s = ctx.MkSolver();
+            s.Assert(GenericContraints);
+            return s;
+        }
 
 		public static BoolExpr GetGenericConstraints()
 		{
