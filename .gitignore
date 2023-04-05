@@ -374,7 +374,6 @@ target
 *.bak
 
 # Build
-out
 build
 bin
 **/__pycache__/
