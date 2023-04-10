@@ -13,11 +13,6 @@ namespace Sudoku.Z3Solver
     // Exemple en utilisant l'API de substitution
     public class Z3SolverSubstitution : Z3SolverBase
     {
-        public static Solver solver = ctx.MkSolver();
-        public Z3SolverSubstitution()
-        {
-            solver.Assert(GenericContraints);
-        }
         public override SudokuGrid Solve(SudokuGrid s)
         {
             SudokuGrid solution = new SudokuGrid();
@@ -40,8 +35,9 @@ namespace Sudoku.Z3Solver
 		    		    substExprs.Add(X[i][j]);
 		    		    substVals.Add(ctx.MkInt(grid.Cells[i][j]));
                     }
-    
+
 		    BoolExpr instance_c = (BoolExpr)GenericContraints.Substitute(substExprs.ToArray(), substVals.ToArray());
+            Solver solver = ctx.MkSolver();
 		    solver.Assert(instance_c);
             if (solver.Check() == Status.SATISFIABLE)
             {
@@ -50,7 +46,14 @@ namespace Sudoku.Z3Solver
                 {
                     for (uint j = 0; j < 9; j++)
                     {
-                        solution.Cells[i][j] = ((IntNum)m.Evaluate(X[i][j])).Int;
+                        if (grid.Cells[i][j] == 0)
+                        {
+                            solution.Cells[i][j] = ((IntNum)m.Evaluate(X[i][j])).Int;
+                        }
+                        else
+                        {
+                            solution.Cells[i][j] = grid.Cells[i][j];
+                        }
                     }
                 }
 
