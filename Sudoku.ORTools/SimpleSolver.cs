@@ -49,25 +49,15 @@ namespace Sudoku.OrTools
 
         private void createConstraints(IntVar[][] variables)
         {
-            // Columns
             for (int i = 0; i < 9; ++i)
             {
                 for (int j = 0; j < 9; ++j)
                 {
                     for (int k = i + 1; k < 9; ++k)
                     {
+                        // Columns
                         model.Add(variables[i][j] != variables[k][j]);
-                    }
-                }
-            }
-
-            // Rows
-            for (int i = 0; i < 9; ++i)
-            {
-                for (int j = 0; j < 9; ++j)
-                {
-                    for (int k = i + 1; k < 9; ++k)
-                    {
+                        // Rows
                         model.Add(variables[j][i] != variables[j][k]);
                     }
                 }
