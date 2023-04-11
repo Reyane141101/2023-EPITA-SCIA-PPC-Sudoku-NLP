@@ -32,7 +32,7 @@ public class SimulatedAnnealingPythonSolver:PythonSolverBase
             PyObject result = solver();
             
             //Convert back to C# object
-            int[][] managedResult = ConvertToTwoDimensionalArray(result.As<int[]>());
+            int[][] managedResult = result.As<int[]>().ToJaggedArray(9);
             
             return new Shared.SudokuGrid() { Cells = managedResult };
         }
@@ -40,21 +40,6 @@ public class SimulatedAnnealingPythonSolver:PythonSolverBase
 
     }
     
-    private int[][] ConvertToTwoDimensionalArray(int[] oneDimensionalArray)
-    {
-        int[][] twoDimensionalArray = new int[9][];
-        int index = 0;
-        for (int row = 0; row < 9; row++)
-        {
-            twoDimensionalArray[row] = new int[9];
-            for (int col = 0; col < 9; col++)
-            {
-                twoDimensionalArray[row][col] = oneDimensionalArray[index];
-                index++;
-            }
-        }
-        return twoDimensionalArray;
-    }
 
     protected override void InitializePythonComponents()
     {

@@ -365,3 +365,18 @@ MigrationBackup/
 .history/
 .localhistory/
 
+# Maven
+target
+
+# Other
+*.log
+*.swp
+*.bak
+
+# Build
+out
+build
+bin
+**/__pycache__/
+**/sudoku.csv
+**/sudoku.csv.zip
