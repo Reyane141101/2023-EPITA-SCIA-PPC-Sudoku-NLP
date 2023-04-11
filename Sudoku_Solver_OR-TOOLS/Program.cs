@@ -25,7 +25,9 @@ public class Program
             new int[] {7, 0, 3, 0, 1, 8, 0, 0, 0},
         };
 
-        var lol = new SolverOrTools().Solve(grid);
-        Console.Write(lol.ToString());
+        var SAT_solvedGrid = new SolverOrTools().Solve(grid);//SAT solver grid;
+        var ORIGINAL_solvedGrid = new Sudoku_Solver_OR_TOOLS_origin().Solve(grid);//SAT solver grid;
+        var MIP_solvedGrid = new Sudoku_Solver_OR_TOOLS_MIP().Solve(grid);//MIP solver grid;
+        Console.Write(MIP_solvedGrid.ToString());
     }
 }
