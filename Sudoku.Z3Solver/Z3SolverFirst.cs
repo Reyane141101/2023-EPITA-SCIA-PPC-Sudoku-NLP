@@ -109,14 +109,6 @@ namespace Sudoku.Z3Solver
                 for (uint i = 0; i < 9; i++)
                     for (uint j = 0; j < 9; j++)
                         R[i, j] = m.Evaluate(X[i][j]);
-
-                /*Console.WriteLine("Sudoku solution:");
-                for (uint i = 0; i < 9; i++)
-                {
-                    for (uint j = 0; j < 9; j++)
-                        Console.Write(" " + R[i, j]);
-                    Console.WriteLine();
-                }*/
                 return R;
             }
             else

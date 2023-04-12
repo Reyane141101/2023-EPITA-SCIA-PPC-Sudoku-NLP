@@ -38,14 +38,6 @@ namespace Sudoku.Z3Solver
                         solution.Cells[i][j] = ((IntNum)m.Evaluate(X[i][j])).Int;
                     }
                 }
-
-                /*Console.WriteLine("Sudoku solution:");
-                for (uint i = 0; i < 9; i++)
-                {
-                    for (uint j = 0; j < 9; j++)
-                        Console.Write(" " + R[i, j]);
-                    Console.WriteLine();
-                }*/
             }
             else
             {
