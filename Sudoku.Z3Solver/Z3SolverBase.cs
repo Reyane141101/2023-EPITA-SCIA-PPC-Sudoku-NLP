@@ -12,7 +12,6 @@ namespace Sudoku.Z3Solver
     public abstract class Z3SolverBase : ISudokuSolver
     {
 		public static Context ctx = new Context();
-		public BoolExpr _PuzzleContraints;
         public static BoolExpr _GenericContraints;
 		public static IntExpr[][] X = new IntExpr[9][];
 
@@ -123,11 +122,6 @@ namespace Sudoku.Z3Solver
 
 		public BoolExpr GetPuzzleConstraints(Shared.SudokuGrid grid)
 		{
-			if (_PuzzleContraints != null)
-			{
-				return _PuzzleContraints;
-			}
-
 			BoolExpr instance_c = ctx.MkTrue();
             for (uint i = 0; i < 9; i++)
                 for (uint j = 0; j < 9; j++)
@@ -137,8 +131,8 @@ namespace Sudoku.Z3Solver
 						    (BoolExpr)
 						    ctx.MkEq(X[i][j], ctx.MkInt(grid.Cells[i][j])));
 				    }
-			_PuzzleContraints = instance_c;
-			return _PuzzleContraints;
+
+			return instance_c;
 		}
 
         public abstract SudokuGrid Solve(SudokuGrid s);	
