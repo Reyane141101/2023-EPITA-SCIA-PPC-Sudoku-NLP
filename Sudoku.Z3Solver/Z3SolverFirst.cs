@@ -5,65 +5,43 @@ using System.Collections;
 using System.Collections.Generic;
 
 using Microsoft.Z3;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.Z3Solver
 {
-    public abstract class Z3SolverBase : ISudokuSolver
-    {
-		public static Context ctx = new Context();
-        public static BoolExpr _GenericContraints;
-		public static IntExpr[][] X = new IntExpr[9][];
-
-        public static Solver _ReusableSolver;
-
-		public Z3SolverBase()
+	public class Z3SolverFirst: ISudokuSolver
+	{
+		public SudokuGrid Solve(SudokuGrid s)
 		{
-			
-			for (uint i = 0; i < 9; i++)
+            SudokuGrid solution = new SudokuGrid();
+
+            using (Context ctx = new Context(new Dictionary<string, string>() { { "model", "true" } }))
+            {
+                Expr[,] solved = SudokuExample(ctx, s);
+
+                for (int i = 0; i < 9; i++)
+                {
+                    for (int j = 0; j < 9; j++)
+                    {
+                        solution.Cells[i][j] = int.Parse(solved[i, j].ToString());
+                    }
+                }
+            }
+            return solution;
+        }
+
+        static Expr[,] SudokuExample(Context ctx, SudokuGrid grid)
+        {
+            // 9x9 matrix of integer variables
+            IntExpr[][] X = new IntExpr[9][];
+            for (uint i = 0; i < 9; i++)
             {
                 X[i] = new IntExpr[9];
                 for (uint j = 0; j < 9; j++)
                     X[i][j] = (IntExpr)ctx.MkConst(ctx.MkSymbol("x_" + (i + 1) + "_" + (j + 1)), ctx.IntSort);
             }
-		}
 
-		public static BoolExpr GenericContraints
-		{
-			get
-			{
-				if (_GenericContraints == null)
-				{
-					_GenericContraints = GetGenericConstraints();
-				}
-				return _GenericContraints;
-			}
-		}
-
-        public static Solver ReusableSolver
-        {
-            get
-            {
-                if (_ReusableSolver == null)
-                {
-                    _ReusableSolver = MakeReusableSolver();
-                }
-                return _ReusableSolver;
-            }
-        }
-
-        public static Solver MakeReusableSolver()
-        {
-            Solver s = ctx.MkSolver();
-            s.Assert(GenericContraints);
-            return s;
-        }
-
-		public static BoolExpr GetGenericConstraints()
-		{
-
-			// each cell contains a value in {1, ..., 9}
-			Expr[][] cells_c = new Expr[9][];
+            // each cell contains a value in {1, ..., 9}
+            Expr[][] cells_c = new Expr[9][];
             for (uint i = 0; i < 9; i++)
             {
                 cells_c[i] = new BoolExpr[9];
@@ -72,8 +50,6 @@ namespace Sudoku.Z3Solver
                                               ctx.MkLe(X[i][j], ctx.MkInt(9)));
             }
 
-
-            
             // each row contains a digit at most once
             BoolExpr[] rows_c = new BoolExpr[9];
             for (uint i = 0; i < 9; i++)
@@ -113,29 +89,33 @@ namespace Sudoku.Z3Solver
             foreach (BoolExpr[] t in sq_c)
                 sudoku_c = ctx.MkAnd(ctx.MkAnd(t), sudoku_c);
 
-
-			// Fin des contraintes "génériques"
-
-			return sudoku_c;
-
-		}
-
-		public BoolExpr GetPuzzleConstraints(Shared.SudokuGrid grid)
-		{
-			BoolExpr instance_c = ctx.MkTrue();
+            BoolExpr instance_c = ctx.MkTrue();
             for (uint i = 0; i < 9; i++)
                 for (uint j = 0; j < 9; j++)
-                    if (grid.Cells[i][j] != 0)
-				    {
-					    instance_c = ctx.MkAnd(instance_c,
-						    (BoolExpr)
-						    ctx.MkEq(X[i][j], ctx.MkInt(grid.Cells[i][j])));
-				    }
+                    instance_c = ctx.MkAnd(instance_c,
+                        (BoolExpr)
+                        ctx.MkITE(ctx.MkEq(ctx.MkInt(grid.Cells[i][j]), ctx.MkInt(0)),
+                                    ctx.MkTrue(),
+                                    ctx.MkEq(X[i][j], ctx.MkInt(grid.Cells[i][j]))));
 
-			return instance_c;
-		}
+            Solver s = ctx.MkSolver();
+            s.Assert(sudoku_c);
+            s.Assert(instance_c);
 
-        public abstract SudokuGrid Solve(SudokuGrid s);	
+            if (s.Check() == Status.SATISFIABLE)
+            {
+                Model m = s.Model;
+                Expr[,] R = new Expr[9, 9];
+                for (uint i = 0; i < 9; i++)
+                    for (uint j = 0; j < 9; j++)
+                        R[i, j] = m.Evaluate(X[i][j]);
+                return R;
+            }
+            else
+            {
+                Console.WriteLine("Failed to solve sudoku");
+                throw new Exception("Failed to solve sudoku");
+            }
+        }
     }
-
 }

@@ -12,11 +12,6 @@ namespace Sudoku.Z3Solver
 	// Exemple de réutilisation en utilisant l'API d'hypothèses (assumptions)
     public class Z3SolverReusableHypothesis: Z3SolverBase
 	{
-		public static Solver ReusableSolver = ctx.MkSolver();
-		public Z3SolverReusableHypothesis()
-		{
-			ReusableSolver.Assert(GenericContraints);
-		}
 		public override SudokuGrid Solve(SudokuGrid s)
 		{
             SudokuGrid solution = new SudokuGrid();
@@ -28,25 +23,16 @@ namespace Sudoku.Z3Solver
 
 		public void SudokuSolve(SudokuGrid grid, ref SudokuGrid solution)
 		{
+            var solver = ReusableSolver;
 			BoolExpr instance_c = GetPuzzleConstraints(grid);
-			if (ReusableSolver.Check(instance_c) == Status.SATISFIABLE)
+			if (solver.Check(instance_c) == Status.SATISFIABLE)
 			{
-				Model m = ReusableSolver.Model;
+				Model m = solver.Model;
                 for (uint i = 0; i < 9; i++)
                 {   
                     for (uint j = 0; j < 9; j++)
 					    solution.Cells[i][j] = ((IntNum)m.Evaluate(X[i][j])).Int;
                 }
-
-                /*
-                Console.WriteLine("Sudoku solution:");
-                for (uint i = 0; i < 9; i++)
-                {
-                    for (uint j = 0; j < 9; j++)
-                        Console.Write(" " + solution.Cells[i][j]]);
-                    Console.WriteLine();
-                }
-                */
             }
             else
             {

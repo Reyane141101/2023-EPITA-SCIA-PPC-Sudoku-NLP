@@ -37,6 +37,7 @@ namespace Sudoku.SimulatedAnnealing
             s = FillEmptyValues(s);
             // set the initial temperature
             double t = GetInitialTemperature(s, original);
+            Console.WriteLine($"Initial temperature: {t}");
             // set the initial best state
             SudokuGrid best = s.CloneSudoku();
             // set the initial current score
@@ -46,7 +47,8 @@ namespace Sudoku.SimulatedAnnealing
             
             // loop until the system has cooled
             int it = 0;
-            while (it < 500000)
+            int stuck = 0;
+            while (it < 1e6)
             {
                 // create a new neighbour state
                 SudokuGrid neighbour = CreateNewState(s, original);
@@ -54,13 +56,22 @@ namespace Sudoku.SimulatedAnnealing
                 double neighbourScore = neighbour.NbErrors(original);
                 // get the delta score
                 double deltaScore = currentScore - neighbourScore;
+                if (deltaScore <= 0) {
+                    stuck++;
+                    if (stuck > 100) {
+                        t += 2;
+                        stuck = 0;
+                    }
+                }
+                else
+                    stuck = 0;
 
                 if (neighbour.IsValid(original))
                 {
                     best = neighbour.CloneSudoku();
                     break;
                 }
-                if (Math.Exp(deltaScore / t) - RandomNumberGenerator.NextDouble() > 0)
+                if (deltaScore > 0 || Math.Exp(deltaScore / t) - RandomNumberGenerator.NextDouble() > 0)
                 {
                     s = neighbour;
                     currentScore = neighbourScore;
@@ -71,7 +82,7 @@ namespace Sudoku.SimulatedAnnealing
                     bestScore = currentScore;
                 }
                 // cool the system
-                t *= 0.999;
+                t *= 0.65;
                 it++;
             }
             return best;
