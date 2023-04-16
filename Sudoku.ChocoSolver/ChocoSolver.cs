@@ -9,6 +9,7 @@ public class ChocoSolver : ISudokuSolver
 	{
 		var toSolve = s.CloneSudoku();
 		var javaSolver = new sudoku.chocosolver.SudokuCP(toSolve.Cells);
+		
 
 		Console.WriteLine("Choose a strategy :\n1 - Default\n2 - InputOrderLB\n3 - MinDomLB\n4 - ActivityBased\n5 - DomOverWDeg");
 		string strategie = Console.ReadLine();
@@ -16,23 +17,23 @@ public class ChocoSolver : ISudokuSolver
 		switch (strategie)
 		{
 			case "1":
-				javaSolver.solve();
+				javaSolver.solveDefault();
 				break;
 			
 			case "2":
-				javaSolver.solve();
+				javaSolver.solveInputOrderLB();
 				break;
 
 			case "3":
-				javaSolver.solve();
+				javaSolver.solveMinDomLB();
 				break;
 			
 			case "4":
-				javaSolver.solve();
+				javaSolver.solveActivityBased();
 				break;
 			
 			case "5":
-				javaSolver.solve();
+				javaSolver.solveDomOverWDeg();
 				break;
 
 			default:
