@@ -3,7 +3,10 @@ package sudoku.chocosolver;
 import java.util.ArrayList;
 
 import org.chocosolver.solver.Model;
+import org.chocosolver.solver.Solution;
+import org.chocosolver.solver.search.strategy.Search;
 import org.chocosolver.solver.variables.IntVar;
+import org.chocosolver.util.tools.ArrayUtils;
 
 
 
@@ -65,9 +68,9 @@ public class SudokuCP extends Object {
         }
     }
 
-    public boolean solve() {
-        // Call solve method and return true if a solution is found, false otherwise
+    private boolean buildSolution() {
         boolean solved = model.getSolver().solve();
+
         if (!solved) {
             return false;
         }
@@ -95,4 +98,39 @@ public class SudokuCP extends Object {
         }
         return true;
     }
+
+    public boolean solveDefault() {
+        return buildSolution();
+    }
+
+    public boolean solveInputOrderLB() {
+        model.getSolver().setSearch(Search.inputOrderLBSearch(ArrayUtils.flatten(grid)));
+
+        return buildSolution();
+    }
+
+    public boolean solveRandom() {
+        model.getSolver().setSearch(Search.randomSearch(ArrayUtils.flatten(grid), side));
+
+        return buildSolution();
+    }
+
+    public boolean solveMinDomLB() {
+        model.getSolver().setSearch(Search.minDomLBSearch(ArrayUtils.flatten(grid)));
+
+        return buildSolution();
+    }
+
+    public boolean solveActivityBased() {
+        model.getSolver().setSearch(Search.activityBasedSearch(ArrayUtils.flatten(grid)));
+
+        return buildSolution();
+    }
+
+    public boolean solveDomOverWDeg() {
+        model.getSolver().setSearch(Search.domOverWDegSearch(ArrayUtils.flatten(grid)));
+
+        return buildSolution();
+    }
+
 }
