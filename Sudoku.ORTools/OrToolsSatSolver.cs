@@ -4,7 +4,7 @@ using Google.OrTools.Sat;
 namespace Sudoku.OrTools
 {
     // 2 SAT solver
-    public class SatSolver : ISudokuSolver
+    public class OrToolsSatSolver : ISudokuSolver
     {
         private CpModel model;
 

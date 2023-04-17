@@ -3,7 +3,7 @@ using Sudoku.Shared;
 
 namespace Sudoku.OrTools;
 
-public class GabSolver : ISudokuSolver
+public class OrToolsGabSolver : ISudokuSolver
 {
     public SudokuGrid Solve(SudokuGrid s)
     {
