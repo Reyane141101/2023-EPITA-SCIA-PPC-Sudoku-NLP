@@ -3,7 +3,7 @@ using Sudoku.Shared;
 
 namespace Sudoku.OrTools;
 
-public class OrToolsSolver : ISudokuSolver
+public class OrToolsOptiSolver : ISudokuSolver
 {
     private const int Size = 9;
 
