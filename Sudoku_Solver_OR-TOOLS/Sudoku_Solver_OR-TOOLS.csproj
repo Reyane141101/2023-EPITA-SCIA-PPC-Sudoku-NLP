@@ -11,7 +11,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Sudoku.Backtracking\Sudoku.Backtracking.csproj" />
-      <ProjectReference Include="..\Sudoku.Benchmark\Sudoku.Benchmark.csproj" />
       <ProjectReference Include="..\Sudoku.DemoSolver\Sudoku.DemoSolver.csproj" />
       <ProjectReference Include="..\Sudoku.Shared\Sudoku.Shared.csproj" />
     </ItemGroup>
