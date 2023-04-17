@@ -115,7 +115,6 @@ namespace Sudoku.Z3Solver
 
 
 			// Fin des contraintes "génériques"
-
 			return sudoku_c;
 
 		}
