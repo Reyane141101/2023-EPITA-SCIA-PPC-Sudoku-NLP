@@ -11,7 +11,7 @@ namespace Sudoku.Z3Solver
 {
 
     // Exemple en utilisant l'API de substitution
-    public class Z3SolverSubstitution : Z3SolverBase
+    public class Z3IntSolverSubstitution : Z3IntSolverBase
     {
         public override SudokuGrid Solve(SudokuGrid s)
         {
@@ -32,7 +32,7 @@ namespace Sudoku.Z3Solver
 		        for (int j = 0; j < 9; j++)
 		    	    if (grid.Cells[i][j] != 0)
 		    	    {
-		    		    substExprs.Add(X[i][j]);
+		    		    substExprs.Add(CellVariables[i][j]);
 		    		    substVals.Add(ctx.MkInt(grid.Cells[i][j]));
                     }
 
@@ -48,7 +48,7 @@ namespace Sudoku.Z3Solver
                     {
                         if (grid.Cells[i][j] == 0)
                         {
-                            solution.Cells[i][j] = ((IntNum)m.Evaluate(X[i][j])).Int;
+                            solution.Cells[i][j] = ((IntNum)m.Evaluate(CellVariables[i][j])).Int;
                         }
                         else
                         {

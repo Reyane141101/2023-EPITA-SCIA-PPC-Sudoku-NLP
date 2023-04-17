@@ -9,8 +9,13 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.Z3Solver
 {
-    public class Z3SolverSimple : Z3SolverBase
+
+	// Exemple de réutilisation en utilisant l'API de scope
+
+	// Exemple de réutilisation en utilisant l'API de scope
+	public class Z3IntSolverReusableScope : Z3IntSolverBase
     {
+
         public override SudokuGrid Solve(SudokuGrid s)
         {
             SudokuGrid solution = new SudokuGrid();
@@ -22,21 +27,17 @@ namespace Sudoku.Z3Solver
 
         public void SudokuSolve(SudokuGrid grid, ref SudokuGrid solution)
         {
-            var sudoku_c = GenericContraints;
-            var instance_c = GetPuzzleConstraints(grid);
-            Solver s = ctx.MkSolver();
-            s.Assert(sudoku_c);
-            s.Assert(instance_c);
-
-            if (s.Check() == Status.SATISFIABLE)
-            {
-                Model m = s.Model;
+            var solver = ReusableSolver;
+            solver.Push();
+			BoolExpr instance_c = GetPuzzleConstraints(grid);
+            solver.Assert(instance_c);
+			if (solver.Check(instance_c) == Status.SATISFIABLE)
+			{
+				Model m = solver.Model;
                 for (uint i = 0; i < 9; i++)
-                {
+                {   
                     for (uint j = 0; j < 9; j++)
-                    {
-                        solution.Cells[i][j] = ((IntNum)m.Evaluate(X[i][j])).Int;
-                    }
+					    solution.Cells[i][j] = ((IntNum)m.Evaluate(CellVariables[i][j])).Int;
                 }
             }
             else
@@ -44,6 +45,8 @@ namespace Sudoku.Z3Solver
                 Console.WriteLine("Failed to solve sudoku");
                 throw new Exception("Failed to solve sudoku");
             }
+			solver.Pop();
+
         }
-    }
+    }   
 }

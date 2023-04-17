@@ -9,8 +9,12 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Sudoku.Z3Solver
 {
+
 	// Exemple de réutilisation en utilisant l'API d'hypothèses (assumptions)
-    public class Z3SolverReusableHypothesis: Z3SolverBase
+
+
+	// Exemple de réutilisation en utilisant l'API d'hypothèses (assumptions)
+	public class Z3IntSolverReusableHypothesis: Z3IntSolverBase
 	{
 		public override SudokuGrid Solve(SudokuGrid s)
 		{
@@ -31,7 +35,7 @@ namespace Sudoku.Z3Solver
                 for (uint i = 0; i < 9; i++)
                 {   
                     for (uint j = 0; j < 9; j++)
-					    solution.Cells[i][j] = ((IntNum)m.Evaluate(X[i][j])).Int;
+					    solution.Cells[i][j] = ((IntNum)m.Evaluate(CellVariables[i][j])).Int;
                 }
             }
             else
