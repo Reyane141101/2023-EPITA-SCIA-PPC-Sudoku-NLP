@@ -20,7 +20,7 @@ namespace Sudoku.Z3Solver
             BoolExpr puzzleConstraints = GetPuzzleConstraints(grid);
             solver.Assert(puzzleConstraints);
 
-            Tactic tactic = ctx.MkTactic("smt");
+            Tactic tactic = ctx.MkTactic("simplify");
             Goal goal = ctx.MkGoal();
             goal.Assert(ctx.MkAnd(GenericContraints, puzzleConstraints));
             ApplyResult applyResult = tactic.Apply(goal);
