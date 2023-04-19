@@ -2,18 +2,9 @@
 
 ## Authors
 
-Adrien GIGET
-
-Ethan MACHAVOINE
-
-Jonathan POELGER
-
-
-Vous devrez également inclure un fichier Readme.md dans votre projet expliquant 
-votre approche et présentant les résultats obtenus lors des tests de performance 
-(attention à ne pas modifier le readme du répertoire principal). Vous pouvez 
-utiliser le projet Sudoku.Benchmark pour effectuer ces tests de performance et 
-mesurer le temps d'exécution de votre solver sur différentes grilles de Sudoku.
+- Adrien GIGET
+- Ethan MACHAVOINE
+- Jonathan POELGER
 
 ## Introduction
 
@@ -45,7 +36,7 @@ Cette approche utilise les BitVecs pour représenter les variables des cellules d
 Sudoku. Les contraintes génériques et les contraintes spécifiques à la grille sont
 définies en utilisant les expressions booléennes de Z3. Mais étant codé sur 4 bits, 
 suffisant pour exprimer les chiffres de 0 à 9 d'un soduku, cela permet d'accélérer 
-(parfois) le traitement.
+le traitement.
 
 ## Déclinaison avec les propriétées de Z3
 
@@ -90,17 +81,18 @@ grilles de Sudoku de niveaux de difficulté "Medium". Les temps d'exécution
 et l'utilisation des ressources ont été comparés pour chaque implémentation.
 
 * Z3Int
-    * Base : 2 811ms
-    * ReusableScope : 6 467ms
-    * ReusableHypothesis : 6 148ms
-    * Substitution : 2 481ms
+    * Base : 2 811 ms
+    * ReusableScope : 6 467 ms
+    * ReusableHypothesis : 6 148 ms
+    * Substitution : 2 481 ms
 
 * Z3BitVector
-    * Base : 622ms
-    * ReusableScope : 1 463ms
-    * ReusableHypothesis : 1 167ms
-    * Substitution : 513ms
-    * Tactics : 1 118ms
+    * Base : 622 ms
+    * ReusableScope : 1 463 ms
+    * ReusableHypothesis : 1 167 ms
+    * Substitution : 513 ms
+    * ReusableScope + Tactic : 1 118 ms
+    * Substitution + Tactic : 504 ms
 
 
 Les temps d'exécution peuvent varier en fonction de la machine et des 
