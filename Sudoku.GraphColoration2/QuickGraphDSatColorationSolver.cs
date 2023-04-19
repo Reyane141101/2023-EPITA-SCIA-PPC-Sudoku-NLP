@@ -9,7 +9,7 @@ using QuickGraph.Algorithms.GraphColoring.VertexColoring;
 
 namespace Graph_Coloration_Solver
 {
-	public class GraphColorationSolver : ISudokuSolver
+	public class QuickGraphDSatColorationSolver : ISudokuSolver
 	{
 
 		public SudokuGrid Solve(SudokuGrid s)

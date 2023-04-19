@@ -10,6 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Sudoku.Backtracking\Sudoku.Backtracking.csproj" />
     <ProjectReference Include="..\Sudoku.CNN\Sudoku.CNN.csproj" />
+    <ProjectReference Include="..\Sudoku.GraphColoration2\Sudoku.GraphColoration2.csproj" />
     <ProjectReference Include="..\Sudoku.ORTools\Sudoku.ORTools.csproj" />
     <ProjectReference Include="..\Sudoku.DemoSolver\Sudoku.DemoSolver.csproj" />
     <ProjectReference Include="..\Sudoku.Shared\Sudoku.Shared.csproj" />

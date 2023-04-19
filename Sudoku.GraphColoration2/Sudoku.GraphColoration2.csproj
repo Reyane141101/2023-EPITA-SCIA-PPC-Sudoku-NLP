@@ -28,8 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Accord" Version="3.8.2-alpha" />
-    <PackageReference Include="Accord.Math" Version="3.8.2-alpha" />
     <PackageReference Include="YC.QuickGraph" Version="3.7.3" />
   </ItemGroup>
 
