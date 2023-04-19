@@ -17,5 +17,7 @@
     <ProjectReference Include="..\Sudoku.SimulatedAnnealing\Sudoku.SimulatedAnnealing.csproj" />
     <ProjectReference Include="..\Sudoku.ChocoSolver\Sudoku.ChocoSolver.csproj" />
     <ProjectReference Include="..\Sudoku.Solver_HA_JG_AF\Sudoku.Solver_HA_JG_AF.csproj" />
+    <ProjectReference Include="..\Sudoku_Solver_OR-TOOLS\Sudoku_Solver_OR-TOOLS.csproj" />
+    <ProjectReference Include="..\Sukoku.GraphColoration\Sukoku.GraphColoration.csproj" />
   </ItemGroup>
 </Project>

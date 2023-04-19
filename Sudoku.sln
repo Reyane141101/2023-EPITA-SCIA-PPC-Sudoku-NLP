@@ -32,6 +32,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.CNN", "Sudoku.CNN\Su
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku_Solver_OR-TOOLS", "Sudoku_Solver_OR-TOOLS\Sudoku_Solver_OR-TOOLS.csproj", "{DA7451CB-8F56-4E98-A076-00DB35BD910A}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sukoku.GraphColoration", "Sukoku.GraphColoration\Sukoku.GraphColoration.csproj", "{96316123-CF1D-4FB4-AFCA-DBCFA817FE46}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -82,6 +84,10 @@ Global
 		{DA7451CB-8F56-4E98-A076-00DB35BD910A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA7451CB-8F56-4E98-A076-00DB35BD910A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA7451CB-8F56-4E98-A076-00DB35BD910A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96316123-CF1D-4FB4-AFCA-DBCFA817FE46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96316123-CF1D-4FB4-AFCA-DBCFA817FE46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96316123-CF1D-4FB4-AFCA-DBCFA817FE46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96316123-CF1D-4FB4-AFCA-DBCFA817FE46}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
