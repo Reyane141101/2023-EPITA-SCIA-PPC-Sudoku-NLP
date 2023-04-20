@@ -4,6 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <RootNamespace>Sudoku.DemoSolver</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,6 +21,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resource1.resx</DependentUpon>
     </Compile>
+    <Compile Remove="Resources_python.Designer.cs" />
+    <Compile Remove="Resources_python\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +30,18 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Remove="Resources_python.resx" />
+    <EmbeddedResource Remove="Resources_python\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\search.py" />
+    <None Remove="Resources\EmptyPythonSolver.py" />
+    <None Remove="Resources_python\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\EmptyPythonSolver.py" />
   </ItemGroup>
 
 </Project>

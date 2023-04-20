@@ -48,6 +48,11 @@ namespace Sudoku.DemoSolver
 		{
 			//declare your pip packages here
 			//InstallPipModule("numpy");
+			InstallPipModule("collections");
+			InstallPipModule("re");
+			InstallPipModule("functools");
+			InstallPipModule("itertools");
+			InstallPipModule("random");
 			base.InitializePythonComponents();
 		}
 	}
